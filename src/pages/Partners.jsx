@@ -21,28 +21,8 @@ import ruckus from '../assets/partners/ruckus.png';
 import samsung from '../assets/partners/samsung.png';
 import tyco from '../assets/partners/tyco.png';
 
-const partnerCategories = [
-  {
-    category: "Core Networking & Infrastructure",
-    description: "The hardware backbone of our physical deployments.",
-    logos: [cisco, hp, commscope, tyco, amp, adcKrone]
-  },
-  {
-    category: "Wireless & Mobility",
-    description: "Enterprise-grade spatial connectivity solutions.",
-    logos: [aruba, ruckus, engenius, netgear, dlink]
-  },
-  {
-    category: "Security & Surveillance",
-    description: "Hardware systems for physical perimeter fortification.",
-    logos: [fortinet, bosch, samsung, avaya]
-  },
-  {
-    category: "Cloud & Compute Integration",
-    description: "Seamless integration into global cloud architectures.",
-    logos: [aws, google, microsoft]
-  }
-];
+import { useContent } from '../hooks/useContent';
+import { urlFor } from '../lib/sanityClient';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,6 +35,9 @@ const itemVariants = {
 };
 
 const Partners = () => {
+  const { data: partnerCategories, isLoading } = useContent('partnerCategory');
+  const { data: settingsData } = useContent('siteSettings');
+
   return (
     <div className="min-h-screen pt-32 pb-32 relative overflow-hidden">
       {/* Immersive Background */}
@@ -82,40 +65,44 @@ const Partners = () => {
         </div>
 
         <div className="space-y-32">
-          {partnerCategories.map((group, groupIdx) => (
-            <div key={groupIdx}>
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="mb-12 border-l-4 border-accent pl-6"
-              >
-                <h2 className="text-3xl md:text-4xl font-black text-white mb-2">{group.category}</h2>
-                <p className="text-lg text-neutral-400">{group.description}</p>
-              </motion.div>
+          {/* Dynamic Categories */}
+          {partnerCategories?.map((cat, index) => (
+            <motion.div 
+              key={cat.category}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-100px" }}
+              className="mb-24 last:mb-0"
+            >
+              <div className="mb-12 border-l-4 border-primary pl-6 py-2">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">{cat.category}</h2>
+                <p className="text-neutral-400 text-lg max-w-2xl">{cat.description}</p>
+              </div>
 
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-100px" }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              >
-                {group.logos.map((logo, i) => (
-                  <motion.div 
-                    key={i} 
-                    variants={itemVariants}
-                    className="group relative flex items-center justify-center aspect-[16/9] bg-white rounded-3xl border border-neutral-200 overflow-hidden hover:border-accent/50 transition-all duration-500 shadow-xl hover:shadow-[0_10px_40px_rgba(34,211,238,0.2)] hover:-translate-y-2 p-8"
-                  >
-                    <img 
-                      src={logo} 
-                      alt={`Partner Logo ${i}`} 
-                      className="w-full h-full object-contain transition-all duration-700 ease-out group-hover:scale-110"
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
+              {/* Improved Responsive Grid: 2 cols on mobile, 3 on tablet, 4 on desktop */}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+                {cat.logos?.map((logo, i) => {
+                  // Handle both local static string imports and Sanity image objects
+                  const imageUrl = typeof logo === 'string' ? logo : (logo.asset ? urlFor(logo).url() : null);
+                  if (!imageUrl) return null;
+                  
+                  return (
+                    <motion.div 
+                      key={i}
+                      variants={itemVariants}
+                      className="group relative flex items-center justify-center aspect-[4/3] bg-white rounded-2xl border border-neutral-200 hover:border-primary/50 transition-all duration-500 overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 p-6 md:p-8"
+                    >
+                      <img 
+                        src={imageUrl} 
+                        alt={`${cat.category} partner`} 
+                        className="w-full h-full object-contain transition-all duration-500 group-hover:scale-110"
+                      />
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
           ))}
         </div>
         
@@ -129,9 +116,14 @@ const Partners = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-blue-600/10 mix-blend-screen" />
           <h2 className="text-4xl font-black text-white mb-6 relative z-10">Procure & Deploy Today</h2>
           <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-8 relative z-10">Leverage our partnerships to build your indestructible physical infrastructure.</p>
-          <button className="relative z-10 bg-white text-background hover:bg-neutral-200 px-10 py-5 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+          <a 
+            href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block relative z-10 bg-white text-background hover:bg-neutral-200 px-10 py-5 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          >
             Consult an Architect
-          </button>
+          </a>
         </motion.div>
 
       </div>

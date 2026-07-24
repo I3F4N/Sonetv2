@@ -2,8 +2,15 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Network, ArrowRight, CheckCircle2, Cable, Hammer, ServerCog } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useContent } from '../hooks/useContent';
+import { urlFor } from '../lib/sanityClient';
+
+import featureNetSplicing from '../assets/features/feature_net_splicing.jpg';
+import featureNetSwitches from '../assets/features/feature_net_switches.jpg';
 
 const Networking = () => {
+  const { data: service } = useContent('service', 'networking');
+  const { data: settingsData } = useContent('siteSettings');
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
@@ -21,14 +28,19 @@ const Networking = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-white/20 bg-white/5">
               <span className="text-white text-sm font-semibold uppercase tracking-widest">Physical & Logical Backbone</span>
             </div>
-            <h1 className="mb-6 text-5xl md:text-7xl font-black">Structured <br/>Networking</h1>
+            <h1 className="mb-6 text-5xl md:text-7xl font-black">{service?.title || "Structured Networking"}</h1>
             <p className="text-xl text-neutral-400 font-light leading-relaxed mb-8">
-              From deploying extensive fiber optic backbones across factory floors to splicing, terminating, and configuring the core switches—we build your network from the ground up.
+              {service?.subtitle || "From deploying extensive fiber optic backbones across factory floors to splicing, terminating, and configuring the core switches—we build your network from the ground up."}
             </p>
             <div className="flex gap-4">
-              <Link to="/contact" className="bg-white text-background hover:bg-neutral-200 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+              <a 
+                href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-background hover:bg-neutral-200 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+              >
                 Deploy Now
-              </Link>
+              </a>
             </div>
           </motion.div>
           
@@ -37,8 +49,8 @@ const Networking = () => {
             className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.05)]"
           >
             <img 
-              src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=1000" 
-              alt="Fiber Optics and Cabling" 
+              src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=1000"} 
+              alt={service?.title || "Fiber Optics and Cabling"} 
               className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
@@ -76,7 +88,7 @@ const Networking = () => {
             viewport={{ once: true }}
             className="order-1 lg:order-2 h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
-            <img src="https://images.unsplash.com/photo-1558227691-41ea78d1f631?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover rounded-2xl opacity-70 grayscale" alt="Technician splicing fiber" />
+            <img src={featureNetSplicing} className="w-full h-full object-cover rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-500" alt="Technician splicing fiber" />
           </motion.div>
         </div>
 
@@ -88,7 +100,7 @@ const Networking = () => {
             viewport={{ once: true }}
             className="h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
-            <img src="https://images.unsplash.com/photo-1551727974-8af20a3322f1?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover rounded-2xl opacity-70 grayscale" alt="Network Switches and Racks" />
+            <img src={featureNetSwitches} className="w-full h-full object-cover rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-500" alt="Network Switches and Racks" />
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, x: 50 }}

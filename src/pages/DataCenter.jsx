@@ -2,8 +2,15 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Server, Cable, Box, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useContent } from '../hooks/useContent';
+import { urlFor } from '../lib/sanityClient';
+
+import heroDataCenter from '../assets/hero/hero_datacenter.jpg';
+import heroNetworking from '../assets/hero/hero_networking.jpg';
 
 const DataCenter = () => {
+  const { data: service } = useContent('service', 'data-center');
+  const { data: settingsData } = useContent('siteSettings');
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
@@ -21,14 +28,19 @@ const DataCenter = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10">
               <span className="text-accent text-sm font-semibold uppercase tracking-widest">Physical MDF/IDF Builds</span>
             </div>
-            <h1 className="mb-6 text-5xl md:text-7xl font-black">Data Centers <br/>& <span className="text-accent">Racks</span></h1>
+            <h1 className="mb-6 text-5xl md:text-7xl font-black">{service?.title || "Data Centers & Racks"}</h1>
             <p className="text-xl text-neutral-400 font-light leading-relaxed mb-8">
-              We physically construct the core of your IT operations. From building out MDF/IDF closets to deploying full-scale data center environments.
+              {service?.subtitle || "We physically construct the core of your IT operations. From building out MDF/IDF closets to deploying full-scale data center environments."}
             </p>
             <div className="flex gap-4">
-              <Link to="/contact" className="bg-accent text-background hover:bg-accent/90 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+              <a 
+                href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-accent text-background hover:bg-accent/90 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)]"
+              >
                 Deploy Now
-              </Link>
+              </a>
             </div>
           </motion.div>
           
@@ -37,8 +49,8 @@ const DataCenter = () => {
             className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-accent/20 shadow-[0_0_50px_rgba(34,211,238,0.1)]"
           >
             <img 
-              src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1000" 
-              alt="Data Center Server Rack" 
+              src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1000"} 
+              alt={service?.title || "Data Center Server Rack"} 
               className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
@@ -76,7 +88,7 @@ const DataCenter = () => {
             viewport={{ once: true }}
             className="order-1 lg:order-2 h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover rounded-2xl opacity-70" alt="Server Room Power" />
+            <img src={heroDataCenter} className="w-full h-full object-cover rounded-2xl opacity-70 transition-all duration-500 hover:opacity-100" alt="Server Room Power" />
           </motion.div>
         </div>
 
@@ -88,7 +100,7 @@ const DataCenter = () => {
             viewport={{ once: true }}
             className="h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
-            <img src="https://images.unsplash.com/photo-1620912189868-307897217351?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover rounded-2xl opacity-70" alt="Patch Panels and Cabling" />
+            <img src={heroNetworking} className="w-full h-full object-cover rounded-2xl opacity-70 transition-all duration-500 hover:opacity-100" alt="Patch Panels and Cabling" />
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, x: 50 }}

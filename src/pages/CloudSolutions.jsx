@@ -2,8 +2,12 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Cloud, ServerCog, Database, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useContent } from '../hooks/useContent';
+import { urlFor } from '../lib/sanityClient';
 
 const CloudSolutions = () => {
+  const { data: service } = useContent('service', 'cloud');
+  const { data: settingsData } = useContent('siteSettings');
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
@@ -21,14 +25,19 @@ const CloudSolutions = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10">
               <span className="text-emerald-400 text-sm font-semibold uppercase tracking-widest">Enterprise Cloud Architecture</span>
             </div>
-            <h1 className="mb-6 text-5xl md:text-7xl font-black">WEB & Cloud <br/><span className="text-emerald-400">Solutions</span></h1>
+            <h1 className="mb-6 text-5xl md:text-7xl font-black">{service?.title || "Web & Cloud Solutions"}</h1>
             <p className="text-xl text-neutral-400 font-light leading-relaxed mb-8">
-              Revolutionizing the way enterprises do business. We offer solutions which help our clients gain a competitive edge with easy automation, centralization, and complete cloud migrations.
+              {service?.subtitle || "Revolutionizing the way enterprises do business. We offer solutions which help our clients gain a competitive edge with easy automation, centralization, and complete cloud migrations."}
             </p>
             <div className="flex gap-4">
-              <Link to="/contact" className="bg-emerald-600 text-white hover:bg-emerald-500 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+              <a 
+                href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-600 text-white hover:bg-emerald-500 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+              >
                 Migrate Today
-              </Link>
+              </a>
             </div>
           </motion.div>
           
@@ -37,8 +46,8 @@ const CloudSolutions = () => {
             className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-emerald-500/20 shadow-[0_0_50px_rgba(16,185,129,0.1)]"
           >
             <img 
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000" 
-              alt="Cloud Computing" 
+              src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000"} 
+              alt={service?.title || "Cloud Computing"} 
               className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000 hue-rotate-[90deg]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />

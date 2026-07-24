@@ -2,8 +2,16 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Shield, Hammer, MonitorCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useContent } from '../hooks/useContent';
+import { urlFor } from '../lib/sanityClient';
+
+import featureSurvWarehouse from '../assets/features/feature_surv_warehouse.jpg';
+import featureSurvNvr from '../assets/features/feature_surv_nvr.jpg';
+import { imageMap } from '../data/content';
 
 const Surveillance = () => {
+  const { data: service } = useContent('service', 'surveillance');
+  const { data: settingsData } = useContent('siteSettings');
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
@@ -22,14 +30,19 @@ const Surveillance = () => {
               <span className="w-2 h-2 rounded-full bg-primary animate-ping"></span>
               <span className="text-primary text-sm font-semibold uppercase tracking-widest">Turnkey Installations</span>
             </div>
-            <h1 className="mb-6 text-5xl md:text-7xl font-black">CCTV & <br/><span className="text-primary">Surveillance</span></h1>
+            <h1 className="mb-6 text-5xl md:text-7xl font-black">{service?.title || "CCTV & Surveillance"}</h1>
             <p className="text-xl text-neutral-400 font-light leading-relaxed mb-8">
-              We supply the hardware, execute structured LAN integration across massive factory floors, physically mount the cameras, and configure the NVR software for end-to-end security.
+              {service?.subtitle || "We supply the hardware, execute structured LAN integration across massive factory floors, physically mount the cameras, and configure the NVR software for end-to-end security."}
             </p>
             <div className="flex gap-4">
-              <Link to="/contact" className="bg-primary text-white hover:bg-primary/90 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(225,29,72,0.4)]">
+              <a 
+                href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-white hover:bg-primary/90 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(225,29,72,0.4)]"
+              >
                 Deploy Now
-              </Link>
+              </a>
             </div>
           </motion.div>
           
@@ -38,8 +51,8 @@ const Surveillance = () => {
             className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-primary/20 shadow-[0_0_50px_rgba(225,29,72,0.1)]"
           >
             <img 
-              src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=1000" 
-              alt="CCTV Cameras" 
+              src={imageMap['surveillance'] || (service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : null)} 
+              alt={service?.title || "CCTV Cameras"} 
               className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
@@ -77,7 +90,7 @@ const Surveillance = () => {
             viewport={{ once: true }}
             className="order-1 lg:order-2 h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
-            <img src="https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="Warehouse Setup" />
+            <img src={featureSurvWarehouse} className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="Warehouse Setup" />
           </motion.div>
         </div>
 
@@ -89,7 +102,7 @@ const Surveillance = () => {
             viewport={{ once: true }}
             className="h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
-            <img src="https://images.unsplash.com/photo-1616423640778-28d1b53229bd?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="NVR Rack Configuration" />
+            <img src={featureSurvNvr} className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="NVR Rack Configuration" />
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, x: 50 }}

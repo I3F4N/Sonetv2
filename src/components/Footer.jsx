@@ -38,51 +38,53 @@ const Footer = () => {
         </div>
 
         {/* Main Footer Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
-          <div className="lg:col-span-4 pr-8">
-            <img src={logo} alt="Sonet Logo" className="h-12 w-auto mb-8" />
-            <p className="text-neutral-400 leading-relaxed mb-8">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 mb-16">
+          <div className="lg:w-1/3 lg:pr-8">
+            <img src={logo} alt="Sonet Logo" className="h-10 md:h-12 w-auto mb-6 md:mb-8" />
+            <p className="text-neutral-400 leading-relaxed mb-8 text-sm md:text-base">
               Deploying Tier-1 physical infrastructures, from campus-wide fiber backbones to massive-scale CCTV and Data Center build-outs. We build the physical pathways that power enterprise connectivity.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-12 h-12 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center text-white transition-all transform hover:scale-110 border border-white/10 hover:border-transparent">
+              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center text-white transition-all transform hover:scale-110 border border-white/10 hover:border-transparent text-sm md:text-base">
                 IN
               </a>
-              <a href="#" className="w-12 h-12 rounded-full bg-white/5 hover:bg-accent flex items-center justify-center text-white transition-all transform hover:scale-110 border border-white/10 hover:border-transparent">
+              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 hover:bg-accent flex items-center justify-center text-white transition-all transform hover:scale-110 border border-white/10 hover:border-transparent text-sm md:text-base">
                 TW
               </a>
             </div>
           </div>
           
-          <div className="lg:col-span-3 lg:col-start-6">
-            <h4 className="text-white font-bold mb-6 text-lg">Solutions</h4>
-            <ul className="space-y-4">
-              <li><Link to="/data-center" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group"><Server size={18} className="text-neutral-600 group-hover:text-accent transition-colors" /> Data Center</Link></li>
-              <li><Link to="/networking" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group"><Network size={18} className="text-neutral-600 group-hover:text-accent transition-colors" /> Networking</Link></li>
-              <li><Link to="/surveillance" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group"><Shield size={18} className="text-neutral-600 group-hover:text-primary transition-colors" /> Surveillance</Link></li>
-              <li><Link to="/wireless" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group"><Wifi size={18} className="text-neutral-600 group-hover:text-primary transition-colors" /> Wireless</Link></li>
-              <li><Link to="/audio-visual" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group"><MonitorPlay size={18} className="text-neutral-600 group-hover:text-primary transition-colors" /> Audio Visual</Link></li>
-              <li><Link to="/cloud" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group"><Cloud size={18} className="text-neutral-600 group-hover:text-primary transition-colors" /> Cloud & Web</Link></li>
-            </ul>
-          </div>
-          
-          <div className="lg:col-span-2">
-            <h4 className="text-white font-bold mb-6 text-lg">Company</h4>
-            <ul className="space-y-4">
-              <li><Link to="/about" className="text-neutral-400 hover:text-white transition-colors">About Us</Link></li>
-              <li><Link to="/partners" className="text-neutral-400 hover:text-white transition-colors">Partners</Link></li>
-              <li><Link to="/careers" className="text-neutral-400 hover:text-white transition-colors">Careers</Link></li>
-              <li><Link to="/contact" className="text-neutral-400 hover:text-white transition-colors">Contact</Link></li>
-            </ul>
-          </div>
+          <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 lg:justify-items-end">
+            <div className="col-span-2 sm:col-span-1">
+              <h4 className="text-white font-bold mb-6 text-base md:text-lg tracking-wide uppercase text-xs md:text-lg">Solutions</h4>
+              <ul className="space-y-4">
+                <li><Link to="/data-center" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group text-sm md:text-base"><Server size={18} className="text-neutral-600 group-hover:text-accent transition-colors" /> Data Center</Link></li>
+                <li><Link to="/networking" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group text-sm md:text-base"><Network size={18} className="text-neutral-600 group-hover:text-accent transition-colors" /> Networking</Link></li>
+                <li><Link to="/surveillance" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group text-sm md:text-base"><Shield size={18} className="text-neutral-600 group-hover:text-primary transition-colors" /> Surveillance</Link></li>
+                <li><Link to="/wireless" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group text-sm md:text-base"><Wifi size={18} className="text-neutral-600 group-hover:text-primary transition-colors" /> Wireless</Link></li>
+                <li><Link to="/audio-visual" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group text-sm md:text-base"><MonitorPlay size={18} className="text-neutral-600 group-hover:text-primary transition-colors" /> Audio Visual</Link></li>
+                <li><Link to="/cloud" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-3 group text-sm md:text-base"><Cloud size={18} className="text-neutral-600 group-hover:text-primary transition-colors" /> Cloud & Web</Link></li>
+              </ul>
+            </div>
+            
+            <div className="col-span-1">
+              <h4 className="text-white font-bold mb-6 text-base md:text-lg tracking-wide uppercase text-xs md:text-lg">Company</h4>
+              <ul className="space-y-4">
+                <li><Link to="/about" className="text-neutral-400 hover:text-white transition-colors text-sm md:text-base">About Us</Link></li>
+                <li><Link to="/partners" className="text-neutral-400 hover:text-white transition-colors text-sm md:text-base">Partners</Link></li>
+                <li><Link to="/careers" className="text-neutral-400 hover:text-white transition-colors text-sm md:text-base">Careers</Link></li>
+                <li><Link to="/contact" className="text-neutral-400 hover:text-white transition-colors text-sm md:text-base">Contact</Link></li>
+              </ul>
+            </div>
 
-          <div className="lg:col-span-2">
-            <h4 className="text-white font-bold mb-6 text-lg">Legal</h4>
-            <ul className="space-y-4">
-              <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="text-neutral-400 hover:text-white transition-colors">Compliance</a></li>
-            </ul>
+            <div className="col-span-1">
+              <h4 className="text-white font-bold mb-6 text-base md:text-lg tracking-wide uppercase text-xs md:text-lg">Legal</h4>
+              <ul className="space-y-4">
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors text-sm md:text-base">Privacy Policy</a></li>
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors text-sm md:text-base">Terms of Service</a></li>
+                <li><a href="#" className="text-neutral-400 hover:text-white transition-colors text-sm md:text-base">Compliance</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         

@@ -1,7 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Server, Network, Shield, Wifi, ChevronRight, HardHat, Cable, Factory, Building2, MonitorPlay, Cloud } from 'lucide-react';
+import { Server, Network, Shield, Wifi, ChevronRight, HardHat, Cable, Factory, Building2, MonitorPlay, Cloud, ArrowRight, CheckCircle2, Menu, X, Play } from 'lucide-react';
+import { useContent } from '../hooks/useContent';
+import { imageMap } from '../data/content';
+
+const iconMap = {
+  Server, Network, Shield, Wifi, MonitorPlay, Cloud, Factory, Building2
+};
 
 // Explicitly import all 18 logos for the flashlight section
 import adcKrone from '../assets/partners/adc-krone.png';
@@ -42,6 +48,11 @@ const Home = () => {
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 600]);
   const opacityHero = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  
+  // CMS Integration
+  const { data: heroData, isLoading: heroLoading } = useContent('hero');
+  const { data: services, isLoading: servicesLoading } = useContent('service');
+  const { data: settingsData } = useContent('siteSettings');
 
   // Flashlight Effect State
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -85,16 +96,27 @@ const Home = () => {
             </div>
             
             {/* Fluid Typography Heading */}
-            <h1 className="mb-8">
-              Building the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-400 to-accent text-glow">
-                Physical Backbone
-              </span> of Enterprise.
-            </h1>
-            
-            <p className="mt-6 text-xl md:text-2xl text-neutral-400 max-w-4xl mx-auto font-light leading-relaxed mb-12">
-              We offer a comprehensive service and solution portfolio to clients, helping them to put their business in motion. Customers can benefit from an industry-leading portfolio that includes Mobility, Networking, Network Security, Cloud, Hosting, Voice, Unified Communications and Application services. Supporting many global enterprises across such industries as business services, hospitality, financial services, manufacturing and energy.
-            </p>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tight leading-[1.1]"
+            >
+              {heroData?.title || "Building the"} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-emerald-400">
+                {heroData?.titleHighlight || "Physical Backbone"}
+              </span> <br />
+              {heroData?.titleEnd || "of Enterprise."}
+            </motion.h1>
+
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="text-xl md:text-2xl text-neutral-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+            >
+              {heroData?.subtitle}
+            </motion.p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <button className="bg-white text-background px-10 py-5 rounded-full font-black text-lg transition-all duration-300 transform hover:scale-105 hover:bg-neutral-200 flex items-center justify-center gap-3 group shadow-[0_0_30px_rgba(255,255,255,0.2)]">
@@ -136,15 +158,16 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Projects: Titan */}
-      <section className="py-32 relative z-10 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-20 text-center">
-            <h2 className="mb-6">Featured Deployment</h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto text-lg">Powering the infrastructure behind India's most prestigious manufacturing and corporate facilities.</p>
-          </div>
+      {/* Featured Projects: Conditionally Rendered via CMS */}
+      {settingsData?.showFeaturedProjects && (
+        <section className="py-32 relative z-10 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-20 text-center">
+              <h2 className="mb-6">Featured Deployment</h2>
+              <p className="text-neutral-400 max-w-2xl mx-auto text-lg">Powering the infrastructure behind India's most prestigious manufacturing and corporate facilities.</p>
+            </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+            <div className="grid lg:grid-cols-2 gap-12">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -176,9 +199,10 @@ const Home = () => {
                 Delivered turnkey corporate networking solutions for their high-density office environment. From supplying and racking massive core switches to meticulous physical terminations and final software configuration, we built their enterprise nervous system.
               </p>
             </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Premium Visible Partners Section */}
       <section className="py-32 relative z-10 bg-background overflow-hidden border-t border-white/5">
@@ -231,128 +255,35 @@ const Home = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[350px]"
           >
-            {/* Surveillance (Reduced emphasis) */}
-            <motion.div variants={itemVariants} className="lg:col-span-2 lg:row-span-1">
-              <Link to="/surveillance" className="group block relative w-full h-full rounded-3xl overflow-hidden glass-panel hover:border-primary/50 transition-all duration-700 shadow-2xl p-10 flex flex-col justify-between">
-                <div className="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=1000" alt="CCTV Installation" className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-                </div>
-                <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity z-0">
-                  <Shield className="w-48 h-48 text-primary transform translate-x-12 -translate-y-12 rotate-12" />
-                </div>
-                <div className="relative z-10 mb-auto bg-primary/20 w-16 h-16 rounded-2xl flex items-center justify-center border border-primary/30 group-hover:scale-110 transition-transform duration-500">
-                  <Shield className="text-primary w-8 h-8" />
-                </div>
-                <div className="relative z-10">
-                  <h3 className="text-3xl md:text-4xl font-black text-white mb-4 group-hover:text-primary transition-colors">Turnkey CCTV & Surveillance</h3>
-                  <p className="text-neutral-300 text-lg max-w-md line-clamp-2 mb-8">We supply the cameras, execute structured system integration, physically mount hardware, and configure the NVR software.</p>
-                  <div className="inline-flex items-center text-primary font-bold uppercase tracking-widest text-sm">
-                    Explore Solutions <ChevronRight size={18} className="ml-2 group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Networking (Increased Emphasis) */}
-            <motion.div variants={itemVariants} className="lg:col-span-2 lg:row-span-2">
-              <Link to="/networking" className="group block relative w-full h-full rounded-3xl overflow-hidden glass-panel hover:border-white/50 transition-all duration-700 p-10 flex flex-col justify-end shadow-2xl">
-                <div className="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=1000" alt="Networking" className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-                </div>
-                <div className="relative z-10 mb-auto bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center border border-white/20 group-hover:scale-110 transition-transform duration-500">
-                  <Network className="text-white w-8 h-8" />
-                </div>
-                <div className="relative z-10 mt-auto">
-                  <h3 className="text-3xl md:text-4xl font-black text-white mb-3 group-hover:text-white transition-colors">Structured Cabling & Networking</h3>
-                  <p className="text-neutral-300 text-lg mb-6 max-w-md">Fiber/UTP deployment, LAN integration, advanced splicing, terminations, and core switch configuration.</p>
-                  <div className="flex items-center text-white font-bold uppercase tracking-widest text-sm">
-                    Explore Hardware <ChevronRight size={18} className="ml-1 group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Data Center / Racks */}
-            <motion.div variants={itemVariants} className="lg:col-span-1 lg:row-span-1">
-              <Link to="/data-center" className="group block relative w-full h-full rounded-3xl overflow-hidden glass-panel hover:border-accent/50 transition-all duration-700 p-8 flex flex-col justify-between">
-                <div className="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000" alt="Data Centers" className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-                </div>
-                <div className="relative z-10 mb-auto bg-accent/10 w-14 h-14 rounded-2xl flex items-center justify-center border border-accent/20 group-hover:scale-110 transition-transform duration-500">
-                  <Server className="text-accent w-7 h-7" />
-                </div>
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">Data Centers & Racks</h3>
-                  <p className="text-neutral-400 text-sm mb-6">Building physical MDF/IDF closets.</p>
-                  <div className="flex items-center text-accent font-bold uppercase tracking-widest text-xs">
-                    Explore <ChevronRight size={14} className="ml-1 group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Wireless */}
-            <motion.div variants={itemVariants} className="lg:col-span-1 lg:row-span-1">
-              <Link to="/wireless" className="group block relative w-full h-full rounded-3xl overflow-hidden glass-panel hover:border-blue-500/50 transition-all duration-700 p-8 flex flex-col justify-between">
-                <div className="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" alt="Wireless" className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-                </div>
-                <div className="relative z-10 mb-auto bg-blue-500/10 w-14 h-14 rounded-2xl flex items-center justify-center border border-blue-500/20 group-hover:scale-110 transition-transform duration-500">
-                  <Wifi className="text-blue-400 w-7 h-7" />
-                </div>
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Industrial Wireless</h3>
-                  <p className="text-neutral-400 text-sm mb-6">Mounting APs in vast factories.</p>
-                  <div className="flex items-center text-blue-400 font-bold uppercase tracking-widest text-xs">
-                    Explore <ChevronRight size={14} className="ml-1 group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Audio Visual */}
-            <motion.div variants={itemVariants} className="lg:col-span-2 lg:row-span-1">
-              <Link to="/audio-visual" className="group block relative w-full h-full rounded-3xl overflow-hidden glass-panel hover:border-purple-500/50 transition-all duration-700 p-8 flex flex-col justify-center items-center text-center">
-                <div className="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&q=80&w=1000" alt="Audio Visual" className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-background/90" />
-                </div>
-                <div className="relative z-10 mb-4 bg-purple-500/20 w-16 h-16 rounded-2xl flex items-center justify-center border border-purple-500/30 group-hover:scale-110 transition-transform duration-500">
-                  <MonitorPlay className="text-purple-400 w-8 h-8" />
-                </div>
-                <div className="relative z-10">
-                  <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Audio Visual Solutions</h3>
-                  <p className="text-neutral-300 text-sm mb-6">Conferencing, PA, & Massive Video Walls.</p>
-                  <div className="flex items-center justify-center text-purple-400 font-bold uppercase tracking-widest text-sm">
-                    Explore <ChevronRight size={16} className="ml-1 group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Cloud Solutions */}
-            <motion.div variants={itemVariants} className="lg:col-span-2 lg:row-span-1">
-              <Link to="/cloud" className="group block relative w-full h-full rounded-3xl overflow-hidden glass-panel hover:border-emerald-500/50 transition-all duration-700 p-8 flex flex-col justify-center items-center text-center">
-                <div className="absolute inset-0 z-0">
-                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000" alt="Cloud Solutions" className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-background/90" />
-                </div>
-                <div className="relative z-10 mb-4 bg-emerald-500/20 w-16 h-16 rounded-2xl flex items-center justify-center border border-emerald-500/30 group-hover:scale-110 transition-transform duration-500">
-                  <Cloud className="text-emerald-400 w-8 h-8" />
-                </div>
-                <div className="relative z-10">
-                  <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Web & Cloud Solutions</h3>
-                  <p className="text-neutral-300 text-sm mb-6">Collocation, Hosting, & Custom Web App Development.</p>
-                  <div className="flex items-center justify-center text-emerald-400 font-bold uppercase tracking-widest text-sm">
-                    Explore <ChevronRight size={16} className="ml-1 group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+            {services?.map((service, index) => {
+              const Icon = iconMap[service.gridIcon] || Shield;
+              return (
+                <motion.div key={service.slug?.current || index} variants={itemVariants} className={service.gridSpan || "lg:col-span-1 lg:row-span-1"}>
+                  <Link to={`/${service.slug?.current}`} className={`group block relative w-full h-full rounded-3xl overflow-hidden glass-panel hover:border-white/50 transition-all duration-700 shadow-2xl ${service.gridSpan?.includes('row-span-2') ? 'p-10 flex flex-col justify-end' : 'p-8 flex flex-col justify-between'}`}>
+                    <div className="absolute inset-0 z-0">
+                      <img src={imageMap[service.slug?.current] || service.heroImage} alt={service.title} className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+                    </div>
+                    {/* Big faded icon in background */}
+                    <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity z-0">
+                      <Icon className={`w-48 h-48 ${service.gridColor} transform translate-x-12 -translate-y-12 rotate-12`} />
+                    </div>
+                    {/* Floating icon */}
+                    <div className={`relative z-10 mb-auto bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center border border-white/20 group-hover:scale-110 transition-transform duration-500`}>
+                      <Icon className={`w-8 h-8 ${service.gridColor || 'text-white'}`} />
+                    </div>
+                    {/* Content */}
+                    <div className={`relative z-10 ${service.gridSpan?.includes('row-span-2') ? 'mt-auto' : ''}`}>
+                      <h3 className="text-3xl md:text-4xl font-black text-white mb-3 group-hover:text-white transition-colors">{service.title}</h3>
+                      <p className="text-neutral-300 text-lg mb-6 max-w-md line-clamp-2">{service.subtitle}</p>
+                      <div className="flex items-center text-white font-bold uppercase tracking-widest text-sm">
+                        Explore <ChevronRight size={18} className="ml-1 group-hover:translate-x-2 transition-transform" />
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
