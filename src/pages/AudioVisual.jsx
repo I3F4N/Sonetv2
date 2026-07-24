@@ -25,8 +25,8 @@ const AudioVisual = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10">
               <span className="text-purple-400 text-sm font-semibold uppercase tracking-widest">Enterprise AV Integration</span>
             </div>
-            <h1 className="mb-6 text-5xl md:text-7xl font-black">{service?.title || "Audio Visual Solutions"}</h1>
-            <p className="text-xl text-neutral-400 font-light leading-relaxed mb-8">
+            <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black">{service?.title || "Audio Visual Solutions"}</h1>
+            <p className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed mb-8">
               {service?.subtitle || "We provide comprehensive design, project management, installation, and support services for audio visual projects of all levels of complexity, creating coherent AV solutions aligned with your enterprise requirements."}
             </p>
             <div className="flex gap-4">
@@ -43,7 +43,7 @@ const AudioVisual = () => {
           
           <motion.div 
             style={{ y: yHero }}
-            className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-purple-400/20 shadow-[0_0_50px_rgba(192,132,252,0.1)]"
+            className="relative h-[350px] sm:h-[450px] lg:h-[600px] rounded-3xl overflow-hidden glass-panel border-purple-400/20 shadow-[0_0_50px_rgba(192,132,252,0.1)]"
           >
             <img 
               src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : ''} 
@@ -67,7 +67,7 @@ const AudioVisual = () => {
             className="order-2 lg:order-1"
           >
             <MonitorPlay className="w-12 h-12 text-purple-400 mb-6" />
-            <h3 className="text-4xl font-black mb-6">Hi-Def Video Conferencing & Video Walls</h3>
+            <h3 className="text-3xl lg:text-4xl font-black mb-6">Hi-Def Video Conferencing & Video Walls</h3>
             <p className="text-lg text-neutral-400 leading-relaxed mb-8">
               Transform your boardrooms and operations centers. We install massive, seamless video walls and high-definition conferencing systems that integrate flawlessly with your core network infrastructure.
             </p>
@@ -83,7 +83,7 @@ const AudioVisual = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="order-1 lg:order-2 h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
+            className="order-1 lg:order-2 h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
             <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="Video Wall Installation" />
           </motion.div>
@@ -95,7 +95,7 @@ const AudioVisual = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
+            className="h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
             <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="Smart Classroom" />
           </motion.div>
@@ -105,7 +105,7 @@ const AudioVisual = () => {
             viewport={{ once: true }}
           >
             <LayoutGrid className="w-12 h-12 text-purple-400 mb-6" />
-            <h3 className="text-4xl font-black mb-6">Smart Rooms & PA Systems</h3>
+            <h3 className="text-3xl lg:text-4xl font-black mb-6">Smart Rooms & PA Systems</h3>
             <p className="text-lg text-neutral-400 leading-relaxed mb-8">
               From interactive whiteboards in educational environments to complete PA solutions and integrated room control systems for hospitality. We handle the entire physical deployment and programming.
             </p>

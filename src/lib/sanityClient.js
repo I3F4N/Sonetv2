@@ -11,5 +11,11 @@ export const client = createClient({
 const builder = imageUrlBuilder(client);
 
 export function urlFor(source) {
-  return builder.image(source);
+  if (!source || !source.asset) return { url: () => '' };
+  try {
+    return builder.image(source);
+  } catch (e) {
+    console.warn("Image builder failed:", e);
+    return { url: () => '' };
+  }
 }

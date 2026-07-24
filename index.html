@@ -5,6 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sonet Integrated Solutions</title>
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        console.error("REACT CRASH ERROR: ", message, error);
+        fetch('/log-error?msg=' + encodeURIComponent(message));
+      };
+    </script>
   </head>
   <body>
     <div id="root"></div>

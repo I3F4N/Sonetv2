@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 import { Server, Network, Shield, Wifi, ChevronRight, HardHat, Cable, Factory, Building2, MonitorPlay, Cloud, ArrowRight, CheckCircle2, Menu, X, Play } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 import { urlFor } from '../lib/sanityClient';
-
-const iconMap = {
-  Server, Network, Shield, Wifi, MonitorPlay, Cloud, Factory, Building2
-};
-
 // Explicitly import all 18 logos for the flashlight section
 import adcKrone from '../assets/partners/adc-krone.png';
 import amp from '../assets/partners/amp.png';
@@ -33,6 +28,10 @@ const partnerLogos = [
   cisco, microsoft, aws, google, hp, aruba, fortinet, bosch, 
   samsung, avaya, ruckus, commscope, tyco, netgear, dlink, engenius, amp, adcKrone
 ];
+
+const iconMap = {
+  Server, Network, Shield, Wifi, MonitorPlay, Cloud, Factory, Building2
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -68,7 +67,7 @@ const Home = () => {
   return (
     <div className="min-h-screen relative">
       {/* Premium Hero Section with Parallax */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-start lg:items-center justify-center overflow-hidden">
         {/* Background Layers */}
         <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
           <img 
@@ -84,7 +83,7 @@ const Home = () => {
           <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] animate-blob mix-blend-screen animation-delay-2000" />
         </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-32 md:mt-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-32 md:mt-40 pb-20">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -100,7 +99,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tight leading-[1.1]"
+              className="text-5xl sm:text-6xl md:text-8xl font-black text-white mb-8 tracking-tight leading-[1.1]"
             >
               {heroData?.title || "Building the"} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-emerald-400">
@@ -113,15 +112,17 @@ const Home = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-xl md:text-2xl text-neutral-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+              className="text-base sm:text-lg md:text-2xl text-neutral-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light px-4 sm:px-0"
             >
               {heroData?.subtitle}
             </motion.p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <button className="bg-white text-background px-10 py-5 rounded-full font-black text-lg transition-all duration-300 transform hover:scale-105 hover:bg-neutral-200 flex items-center justify-center gap-3 group shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-                Explore Deployments <ChevronRight className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              {settingsData?.showFeaturedProjects && (
+                <button className="bg-white text-background px-10 py-5 rounded-full font-black text-lg transition-all duration-300 transform hover:scale-105 hover:bg-neutral-200 flex items-center justify-center gap-3 group shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                  Explore Deployments <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              )}
               <Link to="/partners" className="relative overflow-hidden border border-white/20 text-white backdrop-blur-sm px-10 py-5 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center group">
                 <span className="relative z-10">Our Hardware Partners</span>
                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />

@@ -26,6 +26,7 @@ import tyco from '../assets/partners/tyco.png';
 import heroHome from '../assets/hero/hero_home.jpg';
 import heroSurveillance from '../assets/hero/hero_surveillance.jpg';
 import heroNetworking from '../assets/hero/hero_networking.jpg';
+import heroDataCenter from '../assets/hero/hero_datacenter.jpg';
 import heroAudioVisual from '../assets/hero/hero_audiovisual.jpg';
 import featureWifiFactory from '../assets/features/feature_wifi_factory.jpg';
 import heroCloud from '../assets/hero/hero_cloud.jpg';

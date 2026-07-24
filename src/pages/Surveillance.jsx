@@ -29,8 +29,8 @@ const Surveillance = () => {
               <span className="w-2 h-2 rounded-full bg-primary animate-ping"></span>
               <span className="text-primary text-sm font-semibold uppercase tracking-widest">Turnkey Installations</span>
             </div>
-            <h1 className="mb-6 text-5xl md:text-7xl font-black">{service?.title || "CCTV & Surveillance"}</h1>
-            <p className="text-xl text-neutral-400 font-light leading-relaxed mb-8">
+            <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black">{service?.title || "CCTV & Surveillance"}</h1>
+            <p className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed mb-8">
               {service?.subtitle || "We supply the hardware, execute structured LAN integration across massive factory floors, physically mount the cameras, and configure the NVR software for end-to-end security."}
             </p>
             <div className="flex gap-4">
@@ -47,7 +47,7 @@ const Surveillance = () => {
           
           <motion.div 
             style={{ y: yHero }}
-            className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-primary/20 shadow-[0_0_50px_rgba(225,29,72,0.1)]"
+            className="relative h-[350px] sm:h-[450px] lg:h-[600px] rounded-3xl overflow-hidden glass-panel border-primary/20 shadow-[0_0_50px_rgba(225,29,72,0.1)]"
           >
             <img 
               src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : ''} 
@@ -71,7 +71,7 @@ const Surveillance = () => {
             className="order-2 lg:order-1"
           >
             <Hammer className="w-12 h-12 text-primary mb-6" />
-            <h3 className="text-4xl font-black mb-6">Industrial Hardware Mounting</h3>
+            <h3 className="text-3xl lg:text-4xl font-black mb-6">Industrial Hardware Mounting</h3>
             <p className="text-lg text-neutral-400 leading-relaxed mb-8">
               Sonet Solutions offers a wide range of surveillance, security, and access control systems based on specific security requirements and easy scalability. Our extensive portfolio includes the world's most advanced security technologies, delivering evolving solutions for loss prevention and risk assessment.
             </p>
@@ -87,7 +87,7 @@ const Surveillance = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="order-1 lg:order-2 h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
+            className="order-1 lg:order-2 h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
             <img src={featureSurvWarehouse} className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="Warehouse Setup" />
           </motion.div>
@@ -99,7 +99,7 @@ const Surveillance = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
+            className="h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
             <img src={featureSurvNvr} className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="NVR Rack Configuration" />
           </motion.div>
@@ -109,7 +109,7 @@ const Surveillance = () => {
             viewport={{ once: true }}
           >
             <MonitorCheck className="w-12 h-12 text-primary mb-6" />
-            <h3 className="text-4xl font-black mb-6">NVR & Software Configuration</h3>
+            <h3 className="text-3xl lg:text-4xl font-black mb-6">NVR & Software Configuration</h3>
             <p className="text-lg text-neutral-400 leading-relaxed mb-8">
               We don't just hang cameras—we build the entire security stack. Our engineers set up the physical NVR racks, configure IP assignments, and deploy advanced monitoring software for centralized, real-time tracking.
             </p>

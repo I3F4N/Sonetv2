@@ -28,8 +28,8 @@ const Wireless = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10">
               <span className="text-blue-400 text-sm font-semibold uppercase tracking-widest">End-to-End Installation</span>
             </div>
-            <h1 className="mb-6 text-5xl md:text-7xl font-black">{service?.title || "Industrial Wireless"}</h1>
-            <p className="text-xl text-neutral-400 font-light leading-relaxed mb-8">
+            <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black">{service?.title || "Industrial Wireless"}</h1>
+            <p className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed mb-8">
               {service?.subtitle || "We provide the specialized labor to execute precision LAN integration across sprawling factories and physically mount access points in hard-to-reach industrial ceilings, alongside expert software configuration."}
             </p>
             <div className="flex gap-4">
@@ -46,7 +46,7 @@ const Wireless = () => {
           
           <motion.div 
             style={{ y: yHero }}
-            className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-blue-400/20 shadow-[0_0_50px_rgba(96,165,250,0.1)]"
+            className="relative h-[350px] sm:h-[450px] lg:h-[600px] rounded-3xl overflow-hidden glass-panel border-blue-400/20 shadow-[0_0_50px_rgba(96,165,250,0.1)]"
           >
             <img 
               src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : ''} 
@@ -70,7 +70,7 @@ const Wireless = () => {
             className="order-2 lg:order-1"
           >
             <Hammer className="w-12 h-12 text-blue-400 mb-6" />
-            <h3 className="text-4xl font-black mb-6">Factory AP Deployment</h3>
+            <h3 className="text-3xl lg:text-4xl font-black mb-6">Factory AP Deployment</h3>
             <p className="text-lg text-neutral-400 leading-relaxed mb-8">
               With an incredible increase in network traffic, enterprises are shifting to Wireless LAN Solutions. We deploy infrastructure, execute precise LAN integration, and customize solutions regardless of organization size to ensure safety, efficiency, and seamless mobility.
             </p>
@@ -86,7 +86,7 @@ const Wireless = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="order-1 lg:order-2 h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
+            className="order-1 lg:order-2 h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
             <img src={featureWifiFactory} className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="Factory Installation" />
           </motion.div>
@@ -98,7 +98,7 @@ const Wireless = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
+            className="h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
           >
             <img src={featureWifiRoaming} className="w-full h-full object-cover rounded-2xl opacity-70 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" alt="Roaming Configuration" />
           </motion.div>
@@ -108,7 +108,7 @@ const Wireless = () => {
             viewport={{ once: true }}
           >
             <Wifi className="w-12 h-12 text-blue-400 mb-6" />
-            <h3 className="text-4xl font-black mb-6">Seamless Roaming Configuration</h3>
+            <h3 className="text-3xl lg:text-4xl font-black mb-6">Seamless Roaming Configuration</h3>
             <p className="text-lg text-neutral-400 leading-relaxed mb-8">
               Once the hardware is physically secured, our network engineers configure enterprise controllers to ensure flawless roaming. Forklifts and wandering employees will traverse the entire campus without ever dropping a connection.
             </p>

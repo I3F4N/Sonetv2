@@ -37,7 +37,7 @@ const Navbar = () => {
 
   // Generate dynamic links from active services, plus static Partners page
   const navLinks = services 
-    ? [...services.map(s => ({ name: shortNames[s.slug.current] || s.title, path: `/${s.slug.current}` })), { name: 'Partners', path: '/partners' }]
+    ? [...services.map(s => ({ name: shortNames[s.slug?.current] || s.title, path: `/${s.slug?.current}` })), { name: 'Partners', path: '/partners' }]
     : [{ name: 'Partners', path: '/partners' }];
 
   return (
