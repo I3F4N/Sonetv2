@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-neutral-400 font-sans antialiased overflow-x-hidden selection:bg-primary/30 selection:text-white;
+  }
+  
+  /* Fluid Typography for ultra-premium scaling */
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    line-height: 1.1;
+    @apply text-white font-black tracking-tighter;
+  }
+  h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+    @apply text-white font-black tracking-tight;
+  }
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
+    @apply text-white font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px var(--tw-shadow-color);
+  }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+  .glass-panel {
+    @apply bg-white/[0.02] border border-white/5 backdrop-blur-xl;
+  }
+}
+
+/* Custom scrollbar for ultra-premium feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 5px;
+  border: 2px solid #09090b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
