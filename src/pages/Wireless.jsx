@@ -7,7 +7,6 @@ import { urlFor } from '../lib/sanityClient';
 
 import featureWifiFactory from '../assets/features/feature_wifi_factory.jpg';
 import featureWifiRoaming from '../assets/features/feature_wifi_roaming.jpg';
-import { imageMap } from '../data/content';
 
 const Wireless = () => {
   const { data: service } = useContent('service', 'wireless');
@@ -50,7 +49,7 @@ const Wireless = () => {
             className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-blue-400/20 shadow-[0_0_50px_rgba(96,165,250,0.1)]"
           >
             <img 
-              src={imageMap['wireless'] || (service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : null)} 
+              src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : ''} 
               alt={service?.title || "Industrial Wireless"} 
               className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000"
             />

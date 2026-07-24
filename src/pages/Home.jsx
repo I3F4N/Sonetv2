@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Server, Network, Shield, Wifi, ChevronRight, HardHat, Cable, Factory, Building2, MonitorPlay, Cloud, ArrowRight, CheckCircle2, Menu, X, Play } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
-import { imageMap } from '../data/content';
+import { urlFor } from '../lib/sanityClient';
 
 const iconMap = {
   Server, Network, Shield, Wifi, MonitorPlay, Cloud, Factory, Building2
@@ -261,7 +261,7 @@ const Home = () => {
                 <motion.div key={service.slug?.current || index} variants={itemVariants} className={service.gridSpan || "lg:col-span-1 lg:row-span-1"}>
                   <Link to={`/${service.slug?.current}`} className={`group block relative w-full h-full rounded-3xl overflow-hidden glass-panel hover:border-white/50 transition-all duration-700 shadow-2xl ${service.gridSpan?.includes('row-span-2') ? 'p-10 flex flex-col justify-end' : 'p-8 flex flex-col justify-between'}`}>
                     <div className="absolute inset-0 z-0">
-                      <img src={imageMap[service.slug?.current] || service.heroImage} alt={service.title} className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
+                      <img src={service.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : ''} alt={service.title} className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000 ease-out" />
                       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
                     </div>
                     {/* Big faded icon in background */}

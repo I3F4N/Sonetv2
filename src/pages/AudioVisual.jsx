@@ -4,7 +4,6 @@ import { MonitorPlay, Mic2, LayoutGrid, ArrowRight, CheckCircle2 } from 'lucide-
 import { Link } from 'react-router-dom';
 import { useContent } from '../hooks/useContent';
 import { urlFor } from '../lib/sanityClient';
-import { imageMap } from '../data/content';
 
 const AudioVisual = () => {
   const { data: service } = useContent('service', 'audio-visual');
@@ -47,7 +46,7 @@ const AudioVisual = () => {
             className="relative h-[600px] rounded-3xl overflow-hidden glass-panel border-purple-400/20 shadow-[0_0_50px_rgba(192,132,252,0.1)]"
           >
             <img 
-              src={imageMap['audio-visual'] || (service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&q=80&w=1000")} 
+              src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : ''} 
               alt={service?.title || "Audio Visual Systems"} 
               className="w-full h-full object-cover opacity-60 mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000"
             />

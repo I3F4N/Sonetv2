@@ -26,22 +26,11 @@ import tyco from '../assets/partners/tyco.png';
 import heroHome from '../assets/hero/hero_home.jpg';
 import heroSurveillance from '../assets/hero/hero_surveillance.jpg';
 import heroNetworking from '../assets/hero/hero_networking.jpg';
-import heroDataCenter from '../assets/hero/hero_datacenter.jpg';
 import heroAudioVisual from '../assets/hero/hero_audiovisual.jpg';
 import featureWifiFactory from '../assets/features/feature_wifi_factory.jpg';
 import heroCloud from '../assets/hero/hero_cloud.jpg';
-
 import featureSurvWarehouse from '../assets/features/feature_surv_warehouse.jpg';
 import featureSurvNvr from '../assets/features/feature_surv_nvr.jpg';
-
-export const imageMap = {
-  'surveillance': featureSurvWarehouse, // Reusing our amazing generated warehouse CCTV for Surveillance
-  'networking': heroNetworking,
-  'data-center': heroDataCenter,
-  'wireless': featureWifiFactory, // Reusing our amazing factory AP for Wireless
-  'audio-visual': featureSurvNvr, // Reusing the high-tech NVR control room for AV since it looks like an AV broadcast room
-  'cloud': heroCloud
-};
 
 export const siteContent = {
   partnerCategory: [
