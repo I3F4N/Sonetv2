@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-background border-t border-white/5 pt-24 pb-12 overflow-hidden">
+    <footer className="relative bg-background border-t border-white/5 pt-12 md:pt-24 pb-12 overflow-hidden">
       {/* Massive Background Text Watermark */}
       <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-black text-white/[0.02] select-none pointer-events-none whitespace-nowrap z-0">
         SONET
@@ -16,8 +16,8 @@ const Footer = () => {
         {/* Top Section - Mega CTA */}
         <div className="border-b border-white/10 pb-16 mb-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Build the indestructible.</h2>
-            <p className="text-neutral-400 text-lg max-w-md">Join the Tier-1 global leaders securing their future with our infrastructure.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4">Build the indestructible.</h2>
+            <p className="text-neutral-400 text-sm sm:text-base md:text-lg max-w-md">Join the Tier-1 global leaders securing their future with our infrastructure.</p>
           </div>
           <form 
             action="https://formspree.io/f/YOUR_ENDPOINT_HERE" 

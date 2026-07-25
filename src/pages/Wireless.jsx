@@ -28,8 +28,8 @@ const Wireless = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10">
               <span className="text-blue-400 text-sm font-semibold uppercase tracking-widest">End-to-End Installation</span>
             </div>
-            <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black">{service?.title || "Industrial Wireless"}</h1>
-            <p className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed mb-8">
+            <h1 className="mb-6 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black">{service?.title || "Industrial Wireless"}</h1>
+            <p className="text-sm sm:text-base md:text-lg text-neutral-400 font-light leading-relaxed mb-8">
               {service?.subtitle || "We provide the specialized labor to execute precision LAN integration across sprawling factories and physically mount access points in hard-to-reach industrial ceilings, alongside expert software configuration."}
             </p>
             <div className="flex gap-4">
@@ -71,7 +71,7 @@ const Wireless = () => {
           >
             <Hammer className="w-12 h-12 text-blue-400 mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Factory AP Deployment</h3>
-            <p className="text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
               With an incredible increase in network traffic, enterprises are shifting to Wireless LAN Solutions. We deploy infrastructure, execute precise LAN integration, and customize solutions regardless of organization size to ensure safety, efficiency, and seamless mobility.
             </p>
             <ul className="space-y-4">
@@ -109,7 +109,7 @@ const Wireless = () => {
           >
             <Wifi className="w-12 h-12 text-blue-400 mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Seamless Roaming Configuration</h3>
-            <p className="text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
               Once the hardware is physically secured, our network engineers configure enterprise controllers to ensure flawless roaming. Forklifts and wandering employees will traverse the entire campus without ever dropping a connection.
             </p>
             <ul className="space-y-4">

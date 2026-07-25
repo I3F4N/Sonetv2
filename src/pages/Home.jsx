@@ -67,7 +67,7 @@ const Home = () => {
   return (
     <div className="min-h-screen relative">
       {/* Premium Hero Section with Parallax */}
-      <section className="relative min-h-[100dvh] flex items-start lg:items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-24 md:pt-32 pb-12">
         {/* Background Layers */}
         <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
           <img 
@@ -83,7 +83,7 @@ const Home = () => {
           <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] animate-blob mix-blend-screen animation-delay-2000" />
         </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-32 md:mt-40 pb-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -99,7 +99,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-5xl sm:text-6xl md:text-8xl font-black text-white mb-8 tracking-tight leading-[1.1]"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 sm:mb-8 tracking-tight leading-[1.1]"
             >
               {heroData?.title || "Building the"} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-emerald-400">
@@ -112,7 +112,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-base sm:text-lg md:text-2xl text-neutral-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light px-4 sm:px-0"
+              className="text-sm sm:text-base md:text-xl text-neutral-400 mb-10 max-w-3xl mx-auto leading-relaxed font-light px-4 sm:px-0"
             >
               {heroData?.subtitle}
             </motion.p>

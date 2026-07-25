@@ -28,8 +28,8 @@ const Networking = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-white/20 bg-white/5">
               <span className="text-white text-sm font-semibold uppercase tracking-widest">Physical & Logical Backbone</span>
             </div>
-            <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black">{service?.title || "Cabling & Networking"}</h1>
-            <p className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed mb-8">
+            <h1 className="mb-6 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black">{service?.title || "Cabling & Networking"}</h1>
+            <p className="text-sm sm:text-base md:text-lg text-neutral-400 font-light leading-relaxed mb-8">
               {service?.subtitle || "Fiber/UTP deployment, LAN integration, advanced splicing, terminations, and core switch configuration."}
             </p>
             <div className="flex gap-4">
@@ -71,7 +71,7 @@ const Networking = () => {
           >
             <Cable className="w-12 h-12 text-white mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Structured Cabling & Splicing</h3>
-            <p className="text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
               With over 2 decades of experience in the design, installation, and support of networking systems, we provide the raw materials and specialized labor required for massive physical deployments. We support everything from standard LAN to Multi-location Inter-branch connectivity based on Leased Circuits, VSATs, and Broadband.
             </p>
             <ul className="space-y-4">
@@ -109,7 +109,7 @@ const Networking = () => {
           >
             <ServerCog className="w-12 h-12 text-white mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Switches, Racks & Configuration</h3>
-            <p className="text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
               We bridge the gap between physical labor and logical networking. After stacking and patching the hardware, our engineers configure the core routing, VLANs, and software-defined (SD-WAN) layers to breathe life into the network.
             </p>
             <ul className="space-y-4">

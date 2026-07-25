@@ -25,8 +25,8 @@ const CloudSolutions = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10">
               <span className="text-emerald-400 text-sm font-semibold uppercase tracking-widest">Enterprise Cloud Architecture</span>
             </div>
-            <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black">{service?.title || "Cloud Solutions"}</h1>
-            <p className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed mb-8">
+            <h1 className="mb-6 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black">{service?.title || "Cloud Solutions"}</h1>
+            <p className="text-sm sm:text-base md:text-lg text-neutral-400 font-light leading-relaxed mb-8">
               {service?.subtitle || "Migrations, Hosting & Managed Services."}
             </p>
             <div className="flex gap-4">
@@ -68,7 +68,7 @@ const CloudSolutions = () => {
           >
             <Database className="w-12 h-12 text-emerald-400 mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Collocation & Enterprise Storage</h3>
-            <p className="text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
               We manage complex collocation and migration solutions to ensure your data is secure, redundant, and accessible. Replace on-premise hardware risks with resilient cloud-based architectures.
             </p>
             <ul className="space-y-4">
@@ -106,7 +106,7 @@ const CloudSolutions = () => {
           >
             <ServerCog className="w-12 h-12 text-emerald-400 mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Web & Managed Services</h3>
-            <p className="text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
               Beyond the physical infrastructure, we provide end-to-end digital services. From web hosting to bespoke web application development, we ensure your digital presence is as robust as your physical network.
             </p>
             <ul className="space-y-4">

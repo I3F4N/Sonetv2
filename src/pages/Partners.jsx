@@ -111,11 +111,11 @@ const Partners = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-40 text-center glass-panel p-16 rounded-3xl border border-white/10 relative overflow-hidden"
+          className="mt-16 md:mt-40 text-center glass-panel p-8 md:p-16 mx-0 rounded-3xl border border-white/10 relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-blue-600/10 mix-blend-screen" />
-          <h2 className="text-4xl font-black text-white mb-6 relative z-10">Procure & Deploy Today</h2>
-          <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-8 relative z-10">Leverage our partnerships to build your indestructible physical infrastructure.</p>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4 relative z-10">Procure & Deploy Today</h2>
+          <p className="text-sm sm:text-base md:text-xl text-neutral-400 max-w-2xl mx-auto mb-8 relative z-10">Leverage our partnerships to build your indestructible physical infrastructure.</p>
           <a 
             href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
             target="_blank"

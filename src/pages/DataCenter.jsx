@@ -28,8 +28,8 @@ const DataCenter = () => {
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10">
               <span className="text-accent text-sm font-semibold uppercase tracking-widest">Physical MDF/IDF Builds</span>
             </div>
-            <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black">{service?.title || "Data Centers & Racks"}</h1>
-            <p className="text-base sm:text-lg md:text-xl text-neutral-400 font-light leading-relaxed mb-8">
+            <h1 className="mb-6 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black">{service?.title || "Data Centers & Racks"}</h1>
+            <p className="text-sm sm:text-base md:text-lg text-neutral-400 font-light leading-relaxed mb-8">
               {service?.subtitle || "We physically construct the core of your IT operations. From building out MDF/IDF closets to deploying full-scale data center environments."}
             </p>
             <div className="flex gap-4">
@@ -71,7 +71,7 @@ const DataCenter = () => {
           >
             <Box className="w-12 h-12 text-accent mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">MDF/IDF Room Construction</h3>
-            <p className="text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
               We turn empty rooms into highly organized, mission-critical infrastructure hubs. We bolt the racks into the concrete, install the power distribution units, and handle the complete physical architecture.
             </p>
             <ul className="space-y-4">
@@ -109,7 +109,7 @@ const DataCenter = () => {
           >
             <Cable className="w-12 h-12 text-accent mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Patch Panel & Cable Management</h3>
-            <p className="text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
               Every data center has a unique set of network priorities, from consolidation to quick deployment and zero downtime. We work closely with the biggest names in networking technology to create scalable, high-density data center networks. We have experience serving telecom providers, e-commerce companies, large corporates, universities, and high-security government installations.
             </p>
             <ul className="space-y-4">
