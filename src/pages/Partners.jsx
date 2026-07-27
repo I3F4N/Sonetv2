@@ -40,11 +40,7 @@ const Partners = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-32 relative overflow-hidden">
-      {/* Immersive Background */}
-      <div className="absolute inset-0 bg-noise opacity-40 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 blur-[150px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-accent/5 blur-[150px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[1000px] h-[500px] bg-blue-500/5 blur-[150px] rounded-full mix-blend-screen pointer-events-none" />
+      {/* Solid Dark Background */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-24">
@@ -53,11 +49,11 @@ const Partners = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
-              <span className="text-white text-xs font-semibold tracking-[0.2em] uppercase">Global Ecosystem</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full border border-white/10 bg-black/5 backdrop-blur-md">
+              <span className="text-foreground text-xs font-semibold tracking-[0.2em] uppercase">Global Ecosystem</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">Our Hardware <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-600">Partners</span></h1>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed">
+            <h1 className="text-5xl md:text-7xl font-black text-foreground mb-6 tracking-tight">Our Hardware <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-600">Partners</span></h1>
+            <p className="text-xl text-neutral-500 max-w-3xl mx-auto leading-relaxed">
               We exclusively deploy and configure enterprise-grade equipment from Tier-1 global technology leaders. 
               Our strong OEM partnerships ensure you receive the most resilient physical infrastructure available.
             </p>
@@ -76,8 +72,8 @@ const Partners = () => {
               className="mb-24 last:mb-0"
             >
               <div className="mb-12 border-l-4 border-primary pl-6 py-2">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">{cat.category}</h2>
-                <p className="text-neutral-400 text-lg max-w-2xl">{cat.description}</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2 tracking-tight">{cat.category}</h2>
+                <p className="text-neutral-500 text-lg max-w-2xl">{cat.description}</p>
               </div>
 
               {/* Improved Responsive Grid: 2 cols on mobile, 3 on tablet, 4 on desktop */}
@@ -111,16 +107,16 @@ const Partners = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 md:mt-40 text-center glass-panel p-8 md:p-16 mx-0 rounded-3xl border border-white/10 relative overflow-hidden"
+          className="mt-16 md:mt-40 text-center bg-surface shadow-lg border border-neutral-200 p-8 md:p-16 mx-0 rounded-3xl border border-white/10 relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-blue-600/10 mix-blend-screen" />
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4 relative z-10">Procure & Deploy Today</h2>
-          <p className="text-sm sm:text-base md:text-xl text-neutral-400 max-w-2xl mx-auto mb-8 relative z-10">Leverage our partnerships to build your indestructible physical infrastructure.</p>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 relative z-10">Procure & Deploy Today</h2>
+          <p className="text-sm sm:text-base md:text-xl text-neutral-500 max-w-2xl mx-auto mb-8 relative z-10">Leverage our partnerships to build your indestructible physical infrastructure.</p>
           <a 
-            href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+            href="https://wa.me/9845424560"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block relative z-10 bg-white text-background hover:bg-neutral-200 px-10 py-5 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+            className="inline-block relative z-10 bg-primary text-white hover:bg-primary/90 px-10 py-5 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
           >
             Consult an Architect
           </a>

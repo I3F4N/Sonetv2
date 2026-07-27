@@ -7,9 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#09090b', // Deep Obsidian
-        primary: '#e11d48', // Laser Crimson
-        accent: '#22d3ee', // Electric Cyan
+        background: '#FFFFFF', // Pitlane White
+        foreground: '#111111', // Dark Black Text
+        primary: '#ED2525', // Pitlane Red
+        accent: '#22d3ee', // Keep cyan for specific highlights
+        surface: '#FAFAFA', // Slight off-white for sections
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

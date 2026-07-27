@@ -18,10 +18,12 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
+
+  const effectiveIsScrolled = location.pathname !== '/' ? true : isScrolled;
+
   // Fetch dynamic CMS services
   const { data: services, isLoading } = useContent('service');
   const { data: settingsData } = useContent('siteSettings');
@@ -44,8 +46,8 @@ const Navbar = () => {
     <>
       <nav 
         className={`fixed top-0 z-50 w-full transition-all duration-500 ${
-          isScrolled 
-            ? 'bg-background/90 backdrop-blur-xl border-b border-white/10 py-2' 
+          effectiveIsScrolled 
+            ? 'bg-white/95 backdrop-blur-xl border-b border-black/5 py-2 shadow-sm' 
             : 'bg-transparent py-6'
         }`}
       >
@@ -53,38 +55,50 @@ const Navbar = () => {
           <div className="flex items-center justify-between relative">
             {/* Logo */}
             <div className="flex-shrink-0 z-50 flex items-center">
-              <Link to="/" className="flex items-center">
+              <Link to="/" className="flex items-center transition-colors duration-300">
                 <img 
                   src={logo} 
                   alt="Sonet Integrated Solutions Logo" 
-                  className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-10' : 'h-14'}`} 
+                  className={`w-auto object-contain transition-all duration-300 ${effectiveIsScrolled ? 'h-10' : 'h-14'}`} 
                 />
               </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden xl:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="flex bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-1.5 py-1.5 shadow-2xl overflow-hidden whitespace-nowrap">
-                {navLinks.map((link) => (
-                  <Link 
-                    key={link.name} 
-                    to={link.path} 
-                    className={`px-3 py-2 text-[12px] xl:text-[13px] font-medium rounded-full transition-all duration-300 ${
-                      location.pathname === link.path 
-                        ? 'bg-white text-background' 
-                        : 'text-neutral-300 hover:text-white hover:bg-white/10'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
+              <div className={`flex items-center whitespace-nowrap backdrop-blur-md rounded-full px-1 py-1 shadow-2xl transition-colors duration-500 ${effectiveIsScrolled ? 'bg-black/5 border border-black/10' : 'bg-white/10 border border-white/20'}`}>
+                {navLinks.map((link) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <Link 
+                      key={link.name} 
+                      to={link.path} 
+                      className={`relative px-3 py-1.5 text-[11px] xl:text-[12px] font-medium rounded-full transition-colors duration-300 ${
+                        isActive 
+                          ? (effectiveIsScrolled ? 'text-white' : 'text-black')
+                          : (effectiveIsScrolled ? 'text-black hover:text-primary' : 'text-white hover:text-white/80')
+                      }`}
+                    >
+                      <span className="relative z-10">{link.name}</span>
+                      {isActive && (
+                        <motion.div
+                          layoutId="navbar-active-pill"
+                          className={`absolute inset-0 rounded-full shadow-md z-0 ${
+                            effectiveIsScrolled ? 'bg-primary' : 'bg-white'
+                          }`}
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
             {/* CTA Button */}
             <div className="hidden xl:flex items-center justify-end">
               <a 
-                href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+                href="https://wa.me/9845424560"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative overflow-hidden bg-primary text-white hover:bg-primary/90 px-6 py-2.5 xl:px-8 xl:py-3 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(225,29,72,0.4)] group block"
@@ -98,7 +112,7 @@ const Navbar = () => {
             <div className="xl:hidden z-50">
               <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-white p-2 focus:outline-none"
+                className={`p-2 focus:outline-none transition-colors ${isScrolled ? 'text-black' : 'text-white'}`}
               >
                 {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
@@ -115,7 +129,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-3xl flex flex-col pt-32 px-6 pb-12 overflow-y-auto"
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl flex flex-col pt-32 px-6 pb-12 overflow-y-auto"
           >
             <div className="flex flex-col space-y-6">
               {navLinks.map((link, i) => (
@@ -128,7 +142,7 @@ const Navbar = () => {
                   <Link 
                     to={link.path} 
                     className={`text-3xl font-black tracking-tight ${
-                      location.pathname === link.path ? 'text-primary' : 'text-white'
+                      location.pathname === link.path ? 'text-primary' : 'text-black'
                     }`}
                   >
                     {link.name}
@@ -142,7 +156,7 @@ const Navbar = () => {
                 className="pt-10 mt-auto"
               >
                 <a 
-                  href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+                  href="https://wa.me/9845424560"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block px-3 py-3 mt-4 text-center text-base font-medium rounded-xl text-white bg-primary hover:bg-primary/90 transition-colors shadow-[0_0_15px_rgba(225,29,72,0.3)]"

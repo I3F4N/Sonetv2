@@ -17,27 +17,26 @@ const Networking = () => {
   return (
     <div className="min-h-screen pt-32 md:pt-24 overflow-hidden relative">
       {/* Dynamic Hero */}
-      <section className="relative min-h-[70vh] flex items-center mb-32 border-b border-white/10">
-        <div className="absolute inset-0 w-1/2 left-1/2 -ml-[50vw] bg-white/5 blur-[150px] mix-blend-screen pointer-events-none" />
+      <section className="relative min-h-[70vh] flex items-center mb-32 border-b border-black/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-white/20 bg-white/5">
-              <span className="text-white text-sm font-semibold uppercase tracking-widest">Physical & Logical Backbone</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-black/10 bg-black/5">
+              <span className="text-foreground text-sm font-semibold uppercase tracking-widest">Physical & Logical Backbone</span>
             </div>
             <h1 className="mb-6 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black">{service?.title || "Cabling & Networking"}</h1>
-            <p className="text-sm sm:text-base md:text-lg text-neutral-400 font-light leading-relaxed mb-8">
+            <p className="text-sm sm:text-base md:text-lg text-neutral-500 font-light leading-relaxed mb-8">
               {service?.subtitle || "Fiber/UTP deployment, LAN integration, advanced splicing, terminations, and core switch configuration."}
             </p>
             <div className="flex gap-4">
               <a 
-                href={settingsData?.whatsappNumber ? `https://wa.me/${settingsData.whatsappNumber}?text=${encodeURIComponent(settingsData?.whatsappMessage || "Hi, I would like to consult with an architect.")}` : "/contact"}
+                href="https://wa.me/9845424560"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-background hover:bg-neutral-200 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                className="bg-primary text-white hover:bg-primary/90 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)]"
               >
                 Deploy Now
               </a>
@@ -46,14 +45,14 @@ const Networking = () => {
           
           <motion.div 
             style={{ y: yHero }}
-            className="relative h-[350px] sm:h-[450px] lg:h-[600px] rounded-3xl overflow-hidden glass-panel border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.05)]"
+            className="relative h-[350px] sm:h-[450px] lg:h-[600px] rounded-3xl overflow-hidden bg-surface shadow-lg border border-neutral-200 border-black/10 shadow-[0_0_50px_rgba(255,255,255,0.05)]"
           >
             <img 
               src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=1000"} 
               alt={service?.title || "Fiber Optics and Cabling"} 
-              className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
+              className="w-full h-full object-cover opacity-60  transition-all duration-1000"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
           </motion.div>
         </div>
       </section>
@@ -69,14 +68,14 @@ const Networking = () => {
             viewport={{ once: true }}
             className="order-2 lg:order-1"
           >
-            <Cable className="w-12 h-12 text-white mb-6" />
+            <Cable className="w-12 h-12 text-foreground mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Structured Cabling & Splicing</h3>
-            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-500 leading-relaxed mb-8">
               With over 2 decades of experience in the design, installation, and support of networking systems, we provide the raw materials and specialized labor required for massive physical deployments. We support everything from standard LAN to Multi-location Inter-branch connectivity based on Leased Circuits, VSATs, and Broadband.
             </p>
             <ul className="space-y-4">
               {['Design, Supply & Installation of Active Components', 'Bandwidth Optimization & QoS Design', 'Network Load Balancing & Resilience Solutions', 'Campus-Wide Fiber Integration & Precision Splicing'].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-white font-medium">
+                <li key={i} className="flex items-center gap-3 text-foreground font-medium">
                   <CheckCircle2 className="text-neutral-500 w-5 h-5" /> {item}
                 </li>
               ))}
@@ -86,9 +85,9 @@ const Networking = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="order-1 lg:order-2 h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
+            className="order-1 lg:order-2 h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden bg-surface shadow-lg border border-neutral-200 p-2"
           >
-            <img src={featureNetSplicing} className="w-full h-full object-cover rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-500" alt="Technician splicing fiber" />
+            <img src={featureNetSplicing} className="w-full h-full object-cover rounded-2xl opacity-70  transition-all duration-500" alt="Technician splicing fiber" />
           </motion.div>
         </div>
 
@@ -98,23 +97,23 @@ const Networking = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden glass-panel p-2"
+            className="h-[250px] sm:h-[350px] lg:h-[500px] rounded-3xl overflow-hidden bg-surface shadow-lg border border-neutral-200 p-2"
           >
-            <img src={featureNetSwitches} className="w-full h-full object-cover rounded-2xl opacity-70 grayscale hover:grayscale-0 transition-all duration-500" alt="Network Switches and Racks" />
+            <img src={featureNetSwitches} className="w-full h-full object-cover rounded-2xl opacity-70  transition-all duration-500" alt="Network Switches and Racks" />
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <ServerCog className="w-12 h-12 text-white mb-6" />
+            <ServerCog className="w-12 h-12 text-foreground mb-6" />
             <h3 className="text-3xl lg:text-4xl font-black mb-6">Switches, Racks & Configuration</h3>
-            <p className="text-base md:text-lg text-neutral-400 leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-neutral-500 leading-relaxed mb-8">
               We bridge the gap between physical labor and logical networking. After stacking and patching the hardware, our engineers configure the core routing, VLANs, and software-defined (SD-WAN) layers to breathe life into the network.
             </p>
             <ul className="space-y-4">
               {['Hardware Procurement & Racking', 'Patch Panel Terminations', 'Core Routing & VLAN Config'].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-white font-medium">
+                <li key={i} className="flex items-center gap-3 text-foreground font-medium">
                   <CheckCircle2 className="text-neutral-500 w-5 h-5" /> {item}
                 </li>
               ))}

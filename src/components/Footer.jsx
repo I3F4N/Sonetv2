@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-background border-t border-white/5 pt-12 md:pt-24 pb-12 overflow-hidden">
+    <footer className="relative bg-black border-t border-white/5 pt-12 md:pt-24 pb-12 overflow-hidden">
       {/* Massive Background Text Watermark */}
       <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-black text-white/[0.02] select-none pointer-events-none whitespace-nowrap z-0">
         SONET
