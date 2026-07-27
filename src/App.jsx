@@ -15,9 +15,9 @@ import CloudSolutions from './pages/CloudSolutions';
 
 const PageTransition = ({ children }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
-    exit={{ opacity: 0, y: -20, transition: { duration: 0.15, ease: 'easeIn' } }}
+    initial={{ y: 30 }}
+    animate={{ y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }}
+    exit={{ opacity: 0, y: -20, position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
   >
     {children}
   </motion.div>
@@ -26,7 +26,7 @@ const PageTransition = ({ children }) => (
 const AnimatedRoutes = () => {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/data-center" element={<PageTransition><DataCenter /></PageTransition>} />
@@ -48,7 +48,7 @@ function App() {
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-grow overflow-hidden">
+        <main className="flex-grow overflow-hidden relative">
           <AnimatedRoutes />
         </main>
         <Footer />

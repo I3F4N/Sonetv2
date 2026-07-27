@@ -44,14 +44,7 @@ const Footer = () => {
             <p className="text-neutral-400 leading-relaxed mb-8 text-sm md:text-base">
               Deploying Tier-1 physical infrastructures, from campus-wide fiber backbones to massive-scale CCTV and Data Center build-outs. We build the physical pathways that power enterprise connectivity.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center text-white transition-all transform hover:scale-110 border border-white/10 hover:border-transparent text-sm md:text-base">
-                IN
-              </a>
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 hover:bg-accent flex items-center justify-center text-white transition-all transform hover:scale-110 border border-white/10 hover:border-transparent text-sm md:text-base">
-                TW
-              </a>
-            </div>
+
           </div>
           
           <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 lg:justify-items-end">
