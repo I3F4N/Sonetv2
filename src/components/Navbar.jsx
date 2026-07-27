@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -42,10 +42,30 @@ const Navbar = () => {
     ? [...services.map(s => ({ name: shortNames[s.slug?.current] || s.title, path: `/${s.slug?.current}` })), { name: 'Partners', path: '/partners' }]
     : [{ name: 'Partners', path: '/partners' }];
 
+  const [pillStyle, setPillStyle] = useState({ width: 0, left: 0, opacity: 0 });
+  const linksRef = useRef([]);
+
+  useEffect(() => {
+    // Small delay to ensure layout is calculated after route change
+    setTimeout(() => {
+      const activeIndex = navLinks.findIndex(link => link.path === location.pathname);
+      if (activeIndex !== -1 && linksRef.current[activeIndex]) {
+        const activeElement = linksRef.current[activeIndex];
+        setPillStyle({
+          width: activeElement.offsetWidth,
+          left: activeElement.offsetLeft,
+          opacity: 1,
+        });
+      } else {
+        setPillStyle(prev => ({ ...prev, opacity: 0 }));
+      }
+    }, 10);
+  }, [location.pathname, navLinks, effectiveIsScrolled]);
+
   return (
     <>
       <nav 
-        className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+        className={`fixed top-0 z-50 w-full transition-colors duration-500 ${
           effectiveIsScrolled 
             ? 'bg-white/95 backdrop-blur-xl border-b border-black/5 py-2 shadow-sm' 
             : 'bg-transparent py-6'
@@ -66,29 +86,36 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden xl:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className={`flex items-center whitespace-nowrap backdrop-blur-md rounded-full px-1 py-1 shadow-2xl transition-colors duration-500 ${effectiveIsScrolled ? 'bg-black/5 border border-black/10' : 'bg-white/10 border border-white/20'}`}>
-                {navLinks.map((link) => {
+              <div className={`relative flex items-center whitespace-nowrap backdrop-blur-md rounded-full px-1 py-1 shadow-2xl transition-colors duration-500 ${effectiveIsScrolled ? 'bg-black/5 border border-black/10' : 'bg-white/10 border border-white/20'}`}>
+                
+                {/* Active Pill Indicator */}
+                <motion.div
+                  className={`absolute top-1 bottom-1 rounded-full shadow-md z-0 ${
+                    effectiveIsScrolled ? 'bg-primary' : 'bg-white'
+                  }`}
+                  animate={{
+                    width: pillStyle.width,
+                    x: pillStyle.left,
+                    opacity: pillStyle.opacity
+                  }}
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  initial={false}
+                />
+
+                {navLinks.map((link, i) => {
                   const isActive = location.pathname === link.path;
                   return (
                     <Link 
                       key={link.name} 
+                      ref={el => linksRef.current[i] = el}
                       to={link.path} 
-                      className={`relative px-3 py-1.5 text-[11px] xl:text-[12px] font-medium rounded-full transition-colors duration-300 ${
+                      className={`relative px-3 py-1.5 text-[11px] xl:text-[12px] font-medium rounded-full transition-colors duration-300 z-10 ${
                         isActive 
                           ? (effectiveIsScrolled ? 'text-white' : 'text-black')
                           : (effectiveIsScrolled ? 'text-black hover:text-primary' : 'text-white hover:text-white/80')
                       }`}
                     >
-                      <span className="relative z-10">{link.name}</span>
-                      {isActive && (
-                        <motion.div
-                          layoutId="navbar-active-pill"
-                          className={`absolute inset-0 rounded-full shadow-md z-0 ${
-                            effectiveIsScrolled ? 'bg-primary' : 'bg-white'
-                          }`}
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
+                      {link.name}
                     </Link>
                   );
                 })}
