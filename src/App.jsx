@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -12,23 +13,43 @@ import Partners from './pages/Partners';
 import AudioVisual from './pages/AudioVisual';
 import CloudSolutions from './pages/CloudSolutions';
 
+const PageTransition = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
+    exit={{ opacity: 0, y: -20, transition: { duration: 0.15, ease: 'easeIn' } }}
+  >
+    {children}
+  </motion.div>
+);
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/data-center" element={<PageTransition><DataCenter /></PageTransition>} />
+        <Route path="/networking" element={<PageTransition><Networking /></PageTransition>} />
+        <Route path="/surveillance" element={<PageTransition><Surveillance /></PageTransition>} />
+        <Route path="/wireless" element={<PageTransition><Wireless /></PageTransition>} />
+        <Route path="/partners" element={<PageTransition><Partners /></PageTransition>} />
+        <Route path="/audio-visual" element={<PageTransition><AudioVisual /></PageTransition>} />
+        <Route path="/cloud" element={<PageTransition><CloudSolutions /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/data-center" element={<DataCenter />} />
-            <Route path="/networking" element={<Networking />} />
-            <Route path="/surveillance" element={<Surveillance />} />
-            <Route path="/wireless" element={<Wireless />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/audio-visual" element={<AudioVisual />} />
-            <Route path="/cloud" element={<CloudSolutions />} />
-          </Routes>
+        <main className="flex-grow overflow-hidden">
+          <AnimatedRoutes />
         </main>
         <Footer />
       </div>

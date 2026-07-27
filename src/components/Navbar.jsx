@@ -90,7 +90,7 @@ const Navbar = () => {
                 
                 {/* Active Pill Indicator */}
                 <motion.div
-                  className={`absolute top-1 bottom-1 rounded-full shadow-md z-0 ${
+                  className={`absolute left-0 top-1 bottom-1 rounded-full shadow-md z-0 ${
                     effectiveIsScrolled ? 'bg-primary' : 'bg-white'
                   }`}
                   animate={{
