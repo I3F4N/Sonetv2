@@ -69,7 +69,7 @@ const Home = () => {
         <motion.div style={{ y: yHero }} className="absolute inset-0 z-0 bg-black">
           <img src={heroSpeed} alt="High Speed Networking" className="w-full h-full object-cover opacity-100" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
         </motion.div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left w-full pt-20">
@@ -109,9 +109,9 @@ const Home = () => {
       </section>
 
       {/* Pitlane Metrics Section */}
-      <section className="py-32 bg-grid-pitlane relative z-10 border-b border-black/5">
+      <section className="py-16 lg:py-32 bg-grid-pitlane relative z-10 border-b border-black/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row justify-between items-start mb-24 gap-12">
+          <div className="flex flex-col lg:flex-row justify-between items-start mb-12 lg:mb-24 gap-8 lg:gap-12">
             <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-foreground max-w-2xl leading-tight">
               Numbers that speak<br/>for themselves
             </h2>
@@ -125,7 +125,7 @@ const Home = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-y-16 gap-x-8"
+            className="grid grid-cols-2 md:grid-cols-4 gap-y-12 lg:gap-y-16 gap-x-8"
           >
             {[
               { label: 'Campus Backbones', value: '100+', icon: Building2 },

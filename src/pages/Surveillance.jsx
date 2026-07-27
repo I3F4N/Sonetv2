@@ -15,21 +15,31 @@ const Surveillance = () => {
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
   return (
-    <div className="min-h-screen pt-32 md:pt-24 overflow-hidden relative">
+        <div className="min-h-screen overflow-hidden relative">
       {/* Dynamic Hero */}
-      <section className="relative min-h-[70vh] flex items-center mb-32 border-b border-black/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+      <section className="relative min-h-[70vh] flex items-center justify-start mb-32 pt-32 pb-20 border-b border-black/5">
+        <motion.div style={{ y: yHero }} className="absolute inset-0 z-0 bg-black">
+          <img 
+            src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : ''} 
+            alt={service?.title || "CCTV Cameras"} 
+            className="w-full h-full object-cover opacity-100"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </motion.div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10">
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-              <span className="text-primary text-sm font-semibold uppercase tracking-widest">Turnkey Installations</span>
+              <span className="text-white text-sm font-semibold uppercase tracking-widest">Turnkey Installations</span>
             </div>
-            <h1 className="mb-6 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black">{service?.title || "CCTV & Surveillance"}</h1>
-            <p className="text-sm sm:text-base md:text-lg text-neutral-500 font-light leading-relaxed mb-8">
+            <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white">{service?.title || "CCTV & Surveillance"}</h1>
+            <p className="text-base sm:text-lg md:text-xl text-neutral-200 font-light leading-relaxed mb-8">
               {service?.subtitle || "We supply the hardware, execute structured LAN integration across massive factory floors, physically mount the cameras, and configure the NVR software for end-to-end security."}
             </p>
             <div className="flex gap-4">
@@ -37,23 +47,11 @@ const Surveillance = () => {
                 href="https://wa.me/9845424560"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary text-foreground hover:bg-primary/90 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(225,29,72,0.4)]"
+                className="bg-primary text-white hover:bg-primary/90 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(225,29,72,0.4)]"
               >
                 Deploy Now
               </a>
             </div>
-          </motion.div>
-          
-          <motion.div 
-            style={{ y: yHero }}
-            className="relative h-[350px] sm:h-[450px] lg:h-[600px] rounded-3xl overflow-hidden bg-surface shadow-lg border border-neutral-200 border-primary/20 shadow-[0_0_50px_rgba(225,29,72,0.1)]"
-          >
-            <img 
-              src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : ''} 
-              alt={service?.title || "CCTV Cameras"} 
-              className="w-full h-full object-cover opacity-100 transition-all duration-1000"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
           </motion.div>
         </div>
       </section>
