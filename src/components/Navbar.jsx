@@ -112,7 +112,7 @@ const Navbar = () => {
             <div className="xl:hidden z-50">
               <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`p-2 focus:outline-none transition-colors ${isScrolled ? 'text-black' : 'text-white'}`}
+                className={`p-2 focus:outline-none transition-colors relative z-50 ${isMobileMenuOpen ? 'text-black' : (effectiveIsScrolled ? 'text-black' : 'text-white')}`}
               >
                 {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
@@ -129,7 +129,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl flex flex-col pt-32 px-6 pb-12 overflow-y-auto"
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-3xl flex flex-col pt-32 px-6 pb-12 overflow-y-auto"
           >
             <div className="flex flex-col space-y-6">
               {navLinks.map((link, i) => (

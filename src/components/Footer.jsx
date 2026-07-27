@@ -31,7 +31,7 @@ const Footer = () => {
               className="bg-transparent border-none outline-none text-white px-6 w-full md:w-64 placeholder:text-neutral-500"
               required
             />
-            <button type="submit" className="bg-white text-background hover:bg-neutral-200 px-6 py-3 rounded-full font-bold transition-all flex items-center gap-2 whitespace-nowrap">
+            <button type="submit" className="bg-primary text-white hover:bg-primary/90 px-6 py-3 rounded-full font-bold transition-all flex items-center gap-2 whitespace-nowrap">
               Start <ArrowRight size={18} />
             </button>
           </form>
