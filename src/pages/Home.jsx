@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useInView, useMotionValue, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Server, Network, Shield, Wifi, ChevronRight, HardHat, Cable, Factory, Building2, MonitorPlay, Cloud, ArrowRight, CheckCircle2, Menu, X, Play } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
@@ -52,6 +52,47 @@ const itemVariants = {
   }
 };
 
+const Counter = ({ value }) => {
+  const numMatch = value.match(/\d+/);
+  const num = numMatch ? parseInt(numMatch[0]) : 0;
+  const suffix = value.replace(num.toString(), '');
+  const hasPlus = suffix.includes('+');
+  const textSuffix = suffix.replace('+', '');
+  
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, num, { 
+        duration: 2, 
+        ease: "easeOut",
+        onComplete: () => setIsComplete(true)
+      });
+    }
+  }, [isInView, count, num]);
+
+  return (
+    <span ref={ref} className="inline-flex items-center">
+      <motion.span>{rounded}</motion.span>
+      <span>{textSuffix}</span>
+      {hasPlus && (
+        <motion.span 
+          initial={{ opacity: 0, scale: 0.5, marginLeft: 2 }} 
+          animate={{ opacity: isComplete ? 1 : 0, scale: isComplete ? 1 : 0.5 }}
+          transition={{ duration: 0.4, type: "spring" }}
+          className="text-primary font-bold"
+        >
+          +
+        </motion.span>
+      )}
+    </span>
+  );
+};
+
 const Home = () => {
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 1], [0, 400]);
@@ -100,7 +141,7 @@ const Home = () => {
             </motion.p>
             
             <div className="flex flex-col sm:flex-row justify-start gap-4">
-              <Link to="/partners" className="bg-white text-black px-10 py-4 font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:bg-neutral-200 flex items-center justify-center gap-3 group shadow-2xl">
+              <Link to="/partners" className="bg-white text-black rounded-full px-8 py-3.5 font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:bg-neutral-200 flex items-center justify-center gap-3 group shadow-2xl">
                 Get Started <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -140,7 +181,7 @@ const Home = () => {
               >
                 <metric.icon className="w-5 h-5 text-primary mb-6" />
                 <h3 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-4">
-                  {metric.value}
+                  <Counter value={metric.value} />
                 </h3>
                 <p className="text-xs text-neutral-500 font-bold tracking-wider uppercase">
                   {metric.label}
@@ -216,7 +257,7 @@ const Home = () => {
               <motion.div 
                 key={i} 
                 variants={itemVariants}
-                className="group relative flex items-center justify-center aspect-[4/3] bg-white rounded-2xl border border-neutral-200 hover:border-primary/50 transition-all duration-500 overflow-hidden shadow-md hover:shadow-xl"
+                className="group relative flex items-center justify-center aspect-[4/3] bg-white rounded-2xl border border-neutral-200 hover:border-primary/50 transition-all duration-500 overflow-hidden shadow-md hover:shadow-xl transform-gpu will-change-transform"
               >
                 <img 
                   src={logo} 
