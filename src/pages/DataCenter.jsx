@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Server, Cable, Box, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -16,6 +17,21 @@ const DataCenter = () => {
 
   return (
         <div className="min-h-screen overflow-hidden relative">
+      <SEO 
+        title={service?.title || "DataCenter"} 
+        description={service?.subtitle}
+        url="/data-center"
+        image={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : undefined}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": service?.title,
+          "provider": {
+            "@type": "Organization",
+            "name": "Sonet Integrated Solutions"
+          }
+        }}
+      />
       {/* Dynamic Hero */}
       <section className="relative min-h-[70vh] flex items-center justify-start mb-32 pt-32 pb-20 border-b border-black/5">
         <motion.div style={{ y: yHero }} className="absolute inset-0 z-0 bg-black overflow-hidden">

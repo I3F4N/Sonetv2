@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import SEO from '../components/SEO';
 import { motion, useScroll, useTransform, useInView, useMotionValue, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Server, Network, Shield, Wifi, ChevronRight, HardHat, Cable, Factory, Building2, MonitorPlay, Cloud, ArrowRight, CheckCircle2, Menu, X, Play } from 'lucide-react';
@@ -60,7 +61,7 @@ const Counter = ({ value }) => {
   const textSuffix = suffix.replace('+', '');
   
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
   const [isComplete, setIsComplete] = useState(false);
@@ -104,6 +105,17 @@ const Home = () => {
 
   return (
     <div className="min-h-screen relative">
+      <SEO 
+        title="Physical & Logical Infrastructure Deployments" 
+        url="/" 
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Sonet Integrated Solutions",
+          "url": "https://sonet.vercel.app",
+          "logo": "https://sonet.vercel.app/logo.png"
+        }}
+      />
       {/* Premium Hero Section with Full-Bleed Image */}
       <section className="relative min-h-[100dvh] flex items-center justify-start overflow-hidden pt-24 md:pt-32 pb-12">
         {/* Full-bleed background image with dramatic lighting */}
@@ -172,7 +184,7 @@ const Home = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-2 md:grid-cols-4 gap-y-12 lg:gap-y-16 gap-x-8"
           >
             {[

@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 
 // Explicitly import all 18 logos
@@ -40,6 +41,11 @@ const Partners = () => {
 
   return (
     <div className="min-h-screen pt-32 pb-32 relative overflow-hidden">
+      <SEO 
+        title="Our Hardware Partners" 
+        description="We deploy Tier-1 OEM global leaders including Cisco, Aruba, Fortinet, and more."
+        url="/partners" 
+      />
       {/* Solid Dark Background */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
