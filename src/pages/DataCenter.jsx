@@ -18,11 +18,14 @@ const DataCenter = () => {
         <div className="min-h-screen overflow-hidden relative">
       {/* Dynamic Hero */}
       <section className="relative min-h-[70vh] flex items-center justify-start mb-32 pt-32 pb-20 border-b border-black/5">
-        <motion.div style={{ y: yHero }} className="absolute inset-0 z-0 bg-black">
-          <img 
+        <motion.div style={{ y: yHero }} className="absolute inset-0 z-0 bg-black overflow-hidden">
+          <motion.img
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }} 
             src={service?.heroImage ? (typeof service.heroImage === 'string' ? service.heroImage : urlFor(service.heroImage).url()) : "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1000"} 
             alt={service?.title || "Data Center Server Rack"} 
-            className="w-full h-full object-cover opacity-100"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/60" />
         </motion.div>

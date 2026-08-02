@@ -107,13 +107,20 @@ const Home = () => {
       {/* Premium Hero Section with Full-Bleed Image */}
       <section className="relative min-h-[100dvh] flex items-center justify-start overflow-hidden pt-24 md:pt-32 pb-12">
         {/* Full-bleed background image with dramatic lighting */}
-        <motion.div style={{ y: yHero }} className="absolute inset-0 z-0 bg-black">
-          <img src={heroSpeed} alt="High Speed Networking" className="w-full h-full object-cover opacity-100" />
+        <motion.div style={{ y: yHero }} className="absolute inset-0 z-0 bg-black overflow-hidden">
+          <motion.img 
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            src={heroSpeed} 
+            alt="High Speed Networking" 
+            className="w-full h-full object-cover" 
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
         </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left w-full pt-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left w-full">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -125,7 +132,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white mb-6 tracking-tighter leading-[0.95]"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-4 sm:mb-6 tracking-tighter leading-[0.95]"
             >
               Race towards <br />
               <span className="text-white/90">data-driven</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-neutral-400">excellence</span>
@@ -135,7 +142,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-base sm:text-lg md:text-2xl text-neutral-300 mb-10 max-w-2xl leading-relaxed font-light"
+              className="text-base sm:text-lg md:text-2xl text-neutral-300 mb-6 sm:mb-8 max-w-2xl leading-relaxed font-light"
             >
               <strong className="text-white font-bold">Every millisecond counts.</strong> Access real-time infrastructure that helps you make split-second decisions with confidence.
             </motion.p>
